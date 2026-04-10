@@ -13,14 +13,34 @@ Currently building projects using Python and pursuing the Google Data Analytics 
 
 ---
 
-## 🛠️ Tech Stack
+# Jaden Boothe - Data Portfolio
 
-### 📌 Languages & Tools
-- Python
-- SQL (learning)
-- Git & GitHub
-- Jupyter Notebook
+## Tech Stack
 
+<p align="left">
+  <img src="https://skillicons.dev/icons?i=python,git,github,vscode,mysql" />
+</p>
+
+<p align="left">
+  <img src="https://go-skill-icons.vercel.app/api/icons?i=pandas,numpy,matplotlib,jupyter" />
+</p>
+
+<p align="left">
+  <img src="https://img.shields.io/badge/Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white" />
+  <img src="https://img.shields.io/badge/Tableau-Learning-E97627?style=for-the-badge&logo=tableau&logoColor=white" />
+  <img src="https://img.shields.io/badge/SQL-Learning-336791?style=for-the-badge&logo=postgresql&logoColor=white" />
+</p>
+
+Welcome to my Data Science Portfolio! This repository showcases my projects in data analysis, visualization, and sports analytics. Here, you will find a collection of work that demonstrates my ability to clean data, analyze trends, and communicate insights clearly.
+
+## Table of Contents
+- [Project 1: ABS vs Replay Analysis](#project-1-abs-vs-replay-analysis)
+
+---
+
+## Project 1: ABS vs Replay Analysis
+
+This project compares challenge and replay systems across major sports leagues, focusing on review speed, subjectivity, and efficiency. The goal is to evaluate whether automated systems like MLB ABS create a better fan experience than slower, more subjective review systems.
 ### 📊 Data Analysis & Visualization
 - Pandas
 - NumPy
