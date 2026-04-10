@@ -34,4 +34,7 @@ Currently building projects using Python and pursuing the Google Data Analytics 
 ---
 
 ## 📂 Projects
-🚧 *Projects coming below — stay tuned...*
+### ⚾ ABS vs Replay Analysis
+Analyzed replay and challenge systems across major sports leagues to compare speed, subjectivity, and efficiency.
+
+🔗 https://github.com/Jay330/abs-replay-analysis
