@@ -88,3 +88,10 @@ This project analyzes passenger survival patterns from the Titanic dataset. The 
 ![Titanic Chart 2](images/titanic-chart-2.png)
 
 **Repository Link:** [Titanic Survival Analysis](https://github.com/Jay330-creator/titanic-survival-eda-python)
+## 📫 Contact
+
+- Email: jaden.n.boothe@gmail.com  
+- LinkedIn: [https://www.linkedin.com/in/your-linkedin/](https://www.linkedin.com/in/jaden-boothe-29b8873b9/)  
+- GitHub: https://github.com/Jay330-creator  
+
+Feel free to reach out for opportunities, collaborations, or questions!
