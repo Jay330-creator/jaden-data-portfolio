@@ -46,7 +46,7 @@ This project compares challenge and replay systems across major sports leagues, 
 - Built visualizations to communicate differences clearly
 
 ### Project Preview
-![ABS Chart 1](images/abs-chart-1.png.png)
+![ABS Chart 1](images/abs-chart-1.png)
 ![ABS Chart 2](images/abs-chart-2.png)
 
 **Repository Link:** [ABS vs Replay Analysis](https://github.com/Jay330-creator/abs-replay-analysis)
