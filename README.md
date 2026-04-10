@@ -87,4 +87,4 @@ This project analyzes passenger survival patterns from the Titanic dataset. The 
 ![Titanic Chart 1](images/titanic-chart-1.png)
 ![Titanic Chart 2](images/titanic-chart-2.png)
 
-**Repository Link:** [Titanic Survival Analysis](https://github.com/Jay330-creator/titanic-survival-eda-analysis)
+**Repository Link:** [Titanic Survival Analysis](https://github.com/Jay330-creator/titanic-survival-eda-python)
