@@ -49,7 +49,7 @@ This project compares challenge and replay systems across major sports leagues, 
 ![ABS Chart 1](images/abs-chart-1.png)
 ![ABS Chart 2](images/abs-chart-2.png)
 
-**Repository Link:** [ABS vs Replay Analysis](https://github.com/YOUR-USERNAME/abs-replay-analysis)
+**Repository Link:** [ABS vs Replay Analysis](https://github.com/Jay330/abs-replay-analysis)
 
 ---
 
@@ -68,7 +68,7 @@ This project explores the Palmer Penguins dataset to identify species difference
 ![Penguins Chart 1](images/penguins-chart-1.png)
 ![Penguins Chart 2](images/penguins-chart-2.png)
 
-**Repository Link:** [Palmer Penguins Analysis](https://github.com/YOUR-USERNAME/penguins-data-analysis-python)
+**Repository Link:** [Palmer Penguins Analysis](https://github.com/Jay330/penguins-data-analysis-python)
 
 ---
 
@@ -87,4 +87,4 @@ This project analyzes passenger survival patterns from the Titanic dataset. The 
 ![Titanic Chart 1](images/titanic-chart-1.png)
 ![Titanic Chart 2](images/titanic-chart-2.png)
 
-**Repository Link:** [Titanic Survival Analysis](https://github.com/YOUR-USERNAME/titanic-survival-analysis)
+**Repository Link:** [Titanic Survival Analysis](https://github.com/Jay330/titanic-survival-analysis)
