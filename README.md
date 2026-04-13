@@ -101,7 +101,7 @@ This project analyzes sports betting performance using SQL and Tableau to evalua
 - Identified key insights across sports, bet types, and odds ranges
 
 ### Project Preview
-![Sports Betting Dashboard](https://raw.githubusercontent.com/Jay330-creator/sports-betting-analytics/main/images/SpoersTab.png)
+![Sports Betting Dashboard](https://raw.githubusercontent.com/Jay330-creator/sports-betting-analytics/main/images/SportsTab.png)
 
 **Repository Link:** [Sports Betting Analytics Dashboard](https://github.com/Jay330-creator/sports-betting-analytics)
 
