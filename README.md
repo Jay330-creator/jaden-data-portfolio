@@ -26,7 +26,6 @@ Welcome to my Data Science Portfolio! This repository showcases my projects in d
 - [Project 2: Palmer Penguins Analysis](#project-2-palmer-penguins-analysis)
 - [Project 3: Titanic Survival Analysis](#project-3-titanic-survival-analysis)
 - [Project 4: Sports Betting Analytics Dashboard](#project-4-sports-betting-analytics-dashboard)
-
 ---
 
 ## About Me
@@ -89,6 +88,23 @@ This project analyzes passenger survival patterns from the Titanic dataset. The 
 ![Titanic Chart 2](images/titanic-chart-2.png)
 
 **Repository Link:** [Titanic Survival Analysis](https://github.com/Jay330-creator/titanic-survival-eda-python)
+
+## Project 4: Sports Betting Analytics Dashboard
+
+**Tools Used:** SQL (SQLite), Tableau, Excel
+
+This project analyzes sports betting performance using SQL and Tableau to evaluate profitability, win rate, and risk across different sports, bet types, and odds ranges.
+
+### Key Highlights
+- Built SQL queries to transform raw betting data into aggregated performance tables
+- Visualized profit trends, win rates, and betting strategies using Tableau
+- Identified key insights across sports, bet types, and odds ranges
+
+### Project Preview
+![Sports Betting Dashboard](https://raw.githubusercontent.com/Jay330-creator/sports-betting-analytics/main/images/SpoersTab.png)
+
+**Repository Link:** [Sports Betting Analytics Dashboard](https://github.com/Jay330-creator/sports-betting-analytics)
+
 ## 📫 Contact
 
 - Email: jaden.n.boothe@gmail.com  
