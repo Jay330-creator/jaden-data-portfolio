@@ -25,6 +25,7 @@ Welcome to my Data Science Portfolio! This repository showcases my projects in d
 - [Project 1: ABS vs Replay Analysis](#project-1-abs-vs-replay-analysis)
 - [Project 2: Palmer Penguins Analysis](#project-2-palmer-penguins-analysis)
 - [Project 3: Titanic Survival Analysis](#project-3-titanic-survival-analysis)
+- [Project 4: Sports Betting Analytics Dashboard](#project-4-sports-betting-analytics-dashboard)
 
 ---
 
