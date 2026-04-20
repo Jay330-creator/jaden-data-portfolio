@@ -21,11 +21,14 @@
 Welcome to my Data Science Portfolio! This repository showcases my projects in data analysis, visualization, and sports analytics. Here, you will find a collection of work that demonstrates my ability to clean data, analyze trends, and communicate insights clearly.
 
 ## Table of Contents
-- [About Me](#about-me)
-- [Project 1: ABS vs Replay Analysis](#project-1-abs-vs-replay-analysis)
-- [Project 2: Palmer Penguins Analysis](#project-2-palmer-penguins-analysis)
-- [Project 3: Titanic Survival Analysis](#project-3-titanic-survival-analysis)
-- [Project 4: Sports Betting Analytics Dashboard](#project-4-sports-betting-analytics-dashboard)
+
+* [About Me](#about-me)
+* [Project 1: ABS vs Replay Analysis](#project-1-abs-vs-replay-analysis)
+* [Project 2: Palmer Penguins Analysis](#project-2-palmer-penguins-analysis)
+* [Project 3: Titanic Survival Analysis](#project-3-titanic-survival-analysis)
+* [Project 4: Sports Betting Performance Dashboard](#project-4-sports-betting-performance-dashboard)
+* [Project 5: NYC Transit Accessibility Analysis](#project-5-nyc-transit-accessibility-analysis)
+
 ---
 
 ## About Me
@@ -41,13 +44,14 @@ I’m a Data Science student at Penn State University with a strong interest in 
 This project compares challenge and replay systems across major sports leagues, focusing on review speed, subjectivity, and efficiency. The goal is to evaluate whether automated systems like MLB ABS create a better fan experience than slower, more subjective review systems.
 
 ### Key Highlights
-- Compared review times across multiple leagues
-- Evaluated the role of automation vs subjectivity
-- Built visualizations to communicate differences clearly
+
+* Compared review times across multiple leagues
+* Evaluated the role of automation vs subjectivity
+* Built visualizations to communicate differences clearly
 
 ### Project Preview
-![ABS Chart 1](images/abs-chart-1.png)
 
+![ABS Chart 1](images/abs-chart-1.png)
 
 **Repository Link:** [ABS vs Replay Analysis](https://github.com/Jay330-creator/abs-replay-analysis)
 
@@ -60,11 +64,13 @@ This project compares challenge and replay systems across major sports leagues, 
 This project explores the Palmer Penguins dataset to identify species differences through body measurements, flipper length, and bill dimensions. It focuses on data cleaning, exploratory data analysis, and visual storytelling.
 
 ### Key Highlights
-- Cleaned and explored biological measurement data
-- Compared penguin species using summary statistics and visualizations
-- Identified patterns across multiple physical features
+
+* Cleaned and explored biological measurement data
+* Compared penguin species using summary statistics and visualizations
+* Identified patterns across multiple physical features
 
 ### Project Preview
+
 ![Penguins Chart 1](images/penguins-chart-1.png)
 ![Penguins Chart 2](images/penguins-chart-2.png)
 
@@ -79,36 +85,65 @@ This project explores the Palmer Penguins dataset to identify species difference
 This project analyzes passenger survival patterns from the Titanic dataset. The focus is on how factors such as class, age, gender, and fare related to survival outcomes.
 
 ### Key Highlights
-- Explored survival rates across passenger groups
-- Visualized relationships between class, fare, and survival
-- Practiced data cleaning and exploratory analysis techniques
+
+* Explored survival rates across passenger groups
+* Visualized relationships between class, fare, and survival
+* Practiced data cleaning and exploratory analysis techniques
 
 ### Project Preview
+
 ![Titanic Chart 1](images/titanic-chart-1.png)
 ![Titanic Chart 2](images/titanic-chart-2.png)
 
 **Repository Link:** [Titanic Survival Analysis](https://github.com/Jay330-creator/titanic-survival-eda-python)
 
-## Project 4: Sports Betting Analytics Dashboard
+---
+
+## Project 4: Sports Betting Performance Dashboard
 
 **Tools Used:** SQL (SQLite), Tableau, Excel
 
 This project analyzes sports betting performance using SQL and Tableau to evaluate profitability, win rate, and risk across different sports, bet types, and odds ranges.
 
 ### Key Highlights
-- Built SQL queries to transform raw betting data into aggregated performance tables
-- Visualized profit trends, win rates, and betting strategies using Tableau
-- Identified key insights across sports, bet types, and odds ranges
+
+* Built SQL queries to transform raw betting data into aggregated performance tables
+* Visualized profit trends, win rates, and betting strategies using Tableau
+* Identified key insights across sports, bet types, and odds ranges
 
 ### Project Preview
+
 ![Sports Betting Dashboard](https://raw.githubusercontent.com/Jay330-creator/sports-betting-analytics/main/images/SportsTab.png)
 
 **Repository Link:** [Sports Betting Analytics Dashboard](https://github.com/Jay330-creator/sports-betting-analytics)
 
+---
+
+## Project 5: NYC Transit Accessibility Analysis
+
+**Tools Used:** Python, SQL, Power BI, Pandas
+
+This project analyzes NYC subway accessibility using station, entrance, and elevator data to identify gaps between ADA compliance and real accessibility coverage. The project combines data cleaning, SQL querying, and dashboard visualization to deliver actionable insights.
+
+### Key Highlights
+
+* Built an end-to-end data pipeline (Python → SQL → Power BI)
+* Created borough-level accessibility scoring system
+* Identified a **-0.713 correlation** between ADA compliance and accessibility
+* Discovered major accessibility gaps across boroughs
+
+### Project Preview
+
+![NYC Transit Dashboard](https://raw.githubusercontent.com/Jay330-creator/nyc-transit-accessibility-analysis/main/images/dashboard-preview.png)
+
+**Repository Link:** [NYC Transit Accessibility Analysis](https://github.com/Jay330-creator/nyc-transit-accessibility-analysis)
+
+---
+
 ## 📫 Contact
 
-- Email: jaden.n.boothe@gmail.com  
-- LinkedIn: [https://www.linkedin.com/in/your-linkedin/](https://www.linkedin.com/in/jaden-boothe-29b8873b9/)  
-- GitHub: https://github.com/Jay330-creator  
+* Email: [jaden.n.boothe@gmail.com](mailto:jaden.n.boothe@gmail.com)
+* LinkedIn: https://www.linkedin.com/in/jaden-boothe-29b8873b9/
+* GitHub: https://github.com/Jay330-creator
 
 Feel free to reach out for opportunities, collaborations, or questions!
