@@ -20,6 +20,8 @@
 
 Welcome to my Data Science Portfolio! This repository showcases my projects in data analysis, visualization, and sports analytics. Here, you will find a collection of work that demonstrates my ability to clean data, analyze trends, and communicate insights clearly.
 
+---
+
 ## Table of Contents
 
 * [About Me](#about-me)
@@ -41,16 +43,20 @@ I’m a Data Science student at Penn State University with a strong interest in 
 
 **Tools Used:** Python, Pandas, Matplotlib, Jupyter Notebook
 
-This project compares challenge and replay systems across major sports leagues, focusing on review speed, subjectivity, and efficiency. The goal is to evaluate whether automated systems like MLB ABS create a better fan experience than slower, more subjective review systems.
+### Problem
+Sports leagues rely on replay systems to ensure accuracy, but many fans and players criticize these systems for being slow and overly subjective. This project evaluates whether automated systems like MLB’s ABS provide a better experience compared to traditional replay systems.
 
-### Key Highlights
+### Approach
+- Collected and compared review time data across multiple sports leagues  
+- Analyzed differences between automated and human-based decision systems  
+- Built visualizations to compare efficiency and consistency  
 
-* Compared review times across multiple leagues
-* Evaluated the role of automation vs subjectivity
-* Built visualizations to communicate differences clearly
+### Key Insights
+- Automated systems like ABS are significantly faster than traditional replay systems  
+- Subjective review systems introduce delays and inconsistency  
+- Speed and objectivity are key drivers of positive fan experience  
 
 ### Project Preview
-
 ![ABS Chart 1](images/abs-chart-1.png)
 
 **Repository Link:** [ABS vs Replay Analysis](https://github.com/Jay330-creator/abs-replay-analysis)
@@ -61,16 +67,20 @@ This project compares challenge and replay systems across major sports leagues, 
 
 **Tools Used:** Python, Pandas, Matplotlib, Seaborn, Jupyter Notebook
 
-This project explores the Palmer Penguins dataset to identify species differences through body measurements, flipper length, and bill dimensions. It focuses on data cleaning, exploratory data analysis, and visual storytelling.
+### Problem
+Understanding differences between penguin species requires analyzing multiple biological measurements. This project explores how physical characteristics vary across species and what patterns exist in the data.
 
-### Key Highlights
+### Approach
+- Cleaned and prepared biological measurement data  
+- Performed exploratory data analysis on species features  
+- Built visualizations to compare physical traits  
 
-* Cleaned and explored biological measurement data
-* Compared penguin species using summary statistics and visualizations
-* Identified patterns across multiple physical features
+### Key Insights
+- Clear separation between species based on flipper length and body mass  
+- Certain species show strong clustering across multiple measurements  
+- Visualizations reveal patterns not obvious from raw data alone  
 
 ### Project Preview
-
 ![Penguins Chart 1](images/penguins-chart-1.png)
 ![Penguins Chart 2](images/penguins-chart-2.png)
 
@@ -82,16 +92,20 @@ This project explores the Palmer Penguins dataset to identify species difference
 
 **Tools Used:** Python, Pandas, Matplotlib, Seaborn, Jupyter Notebook
 
-This project analyzes passenger survival patterns from the Titanic dataset. The focus is on how factors such as class, age, gender, and fare related to survival outcomes.
+### Problem
+The Titanic disaster provides a classic dataset for understanding survival patterns. This project investigates which factors most influenced survival outcomes.
 
-### Key Highlights
+### Approach
+- Cleaned and analyzed passenger data  
+- Explored relationships between class, age, gender, and fare  
+- Built visualizations to identify survival trends  
 
-* Explored survival rates across passenger groups
-* Visualized relationships between class, fare, and survival
-* Practiced data cleaning and exploratory analysis techniques
+### Key Insights
+- Passenger class had a major impact on survival rates  
+- Females had significantly higher survival rates than males  
+- Higher ticket fares were associated with increased survival likelihood  
 
 ### Project Preview
-
 ![Titanic Chart 1](images/titanic-chart-1.png)
 ![Titanic Chart 2](images/titanic-chart-2.png)
 
@@ -103,16 +117,20 @@ This project analyzes passenger survival patterns from the Titanic dataset. The 
 
 **Tools Used:** SQL (SQLite), Tableau, Excel
 
-This project analyzes sports betting performance using SQL and Tableau to evaluate profitability, win rate, and risk across different sports, bet types, and odds ranges.
+### Problem
+Sports bettors often track performance manually without clear insights into profitability, risk, and strategy effectiveness. This project aims to analyze betting performance using structured data.
 
-### Key Highlights
+### Approach
+- Used SQL to transform raw betting data into aggregated tables  
+- Analyzed performance by sport, bet type, and odds range  
+- Built a Tableau dashboard to visualize trends and profitability  
 
-* Built SQL queries to transform raw betting data into aggregated performance tables
-* Visualized profit trends, win rates, and betting strategies using Tableau
-* Identified key insights across sports, bet types, and odds ranges
+### Key Insights
+- Certain sports consistently outperform others in profitability  
+- Bet type significantly impacts win rate and risk exposure  
+- Data-driven tracking provides a clear edge over unstructured betting  
 
 ### Project Preview
-
 ![Sports Betting Dashboard](https://raw.githubusercontent.com/Jay330-creator/sports-betting-analytics/main/images/SportsTab.png)
 
 **Repository Link:** [Sports Betting Analytics Dashboard](https://github.com/Jay330-creator/sports-betting-analytics)
@@ -123,17 +141,21 @@ This project analyzes sports betting performance using SQL and Tableau to evalua
 
 **Tools Used:** Python, SQL, Power BI, Pandas
 
-This project analyzes NYC subway accessibility using station, entrance, and elevator data to identify gaps between ADA compliance and real accessibility coverage. The project combines data cleaning, SQL querying, and dashboard visualization to deliver actionable insights.
+### Problem
+Public transit accessibility is critical for mobility, but there is no simple way to compare how accessible NYC subway stations are across boroughs. This project evaluates accessibility coverage and identifies gaps between ADA compliance and real-world usability.
 
-### Key Highlights
+### Approach
+- Cleaned and transformed raw station, entrance, and elevator datasets using Python  
+- Built SQL queries to aggregate borough-level accessibility metrics  
+- Developed a Power BI dashboard to visualize accessibility patterns  
 
-* Built an end-to-end data pipeline (Python → SQL → Power BI)
-* Created borough-level accessibility scoring system
-* Identified a **-0.713 correlation** between ADA compliance and accessibility
-* Discovered major accessibility gaps across boroughs
+### Key Insights
+- Only ~33% of NYC subway stations are fully accessible  
+- Manhattan has the highest accessibility rate, while other boroughs lag behind  
+- ADA-compliant infrastructure does not guarantee full accessibility  
+- Found a **-0.713 correlation** between ADA compliance and accessibility  
 
 ### Project Preview
-
 ![NYC Transit Dashboard](https://raw.githubusercontent.com/Jay330-creator/nyc-transit-accessibility-analysis/main/images/dashboard-preview.png)
 
 **Repository Link:** [NYC Transit Accessibility Analysis](https://github.com/Jay330-creator/nyc-transit-accessibility-analysis)
@@ -142,8 +164,8 @@ This project analyzes NYC subway accessibility using station, entrance, and elev
 
 ## 📫 Contact
 
-* Email: [jaden.n.boothe@gmail.com](mailto:jaden.n.boothe@gmail.com)
-* LinkedIn: https://www.linkedin.com/in/jaden-boothe-29b8873b9/
-* GitHub: https://github.com/Jay330-creator
+* Email: jaden.n.boothe@gmail.com  
+* LinkedIn: https://www.linkedin.com/in/jaden-boothe-29b8873b9/  
+* GitHub: https://github.com/Jay330-creator  
 
 Feel free to reach out for opportunities, collaborations, or questions!
