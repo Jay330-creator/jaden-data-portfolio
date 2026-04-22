@@ -30,6 +30,7 @@ Welcome to my Data Science Portfolio! This repository showcases my projects in d
 * [Project 3: Titanic Survival Analysis](#project-3-titanic-survival-analysis)
 * [Project 4: Sports Betting Performance Dashboard](#project-4-sports-betting-performance-dashboard)
 * [Project 5: NYC Transit Accessibility Analysis](#project-5-nyc-transit-accessibility-analysis)
+* [Project 6: NYC Permits & 311 Service Efficiency Analysis](#project-6-nyc-permits--311-service-efficiency-analysis)
 
 ---
 
@@ -159,6 +160,32 @@ Public transit accessibility is critical for mobility, but there is no simple wa
 ![NYC Transit Dashboard](https://raw.githubusercontent.com/Jay330-creator/nyc-transit-accessibility-analysis/main/images/dashboard-preview.png)
 
 **Repository Link:** [NYC Transit Accessibility Analysis](https://github.com/Jay330-creator/nyc-transit-accessibility-analysis)
+
+---
+
+## Project 6: NYC Permits & 311 Service Efficiency Analysis
+
+**Tools Used:** Python, Pandas, SQL, Power BI
+
+### Problem
+City service systems generate large volumes of permit requests and 311 complaints, but it is often difficult to measure response efficiency, identify delays, and understand how service performance varies across categories. This project analyzes NYC permits and 311 service data to evaluate operational efficiency and uncover patterns in response times.
+
+### Approach
+- Cleaned and prepared permit and 311 service request datasets using Python and Pandas  
+- Used SQL to organize and aggregate service performance metrics  
+- Analyzed response time patterns across complaint and permit categories  
+- Built a Power BI dashboard to visualize efficiency trends and service bottlenecks  
+
+### Key Insights
+- Certain complaint and permit categories experience significantly longer response times than others  
+- Service efficiency varies across request type, location, and agency workload  
+- Data visualization makes it easier to identify bottlenecks and improvement opportunities  
+- Operational metrics can help support faster, more informed city service decisions  
+
+### Project Preview
+![NYC Permits and 311 Dashboard](images/powerbis.png)
+
+**Repository Link:** [NYC Permits & 311 Service Efficiency Analysis](https://github.com/Jay330-creator/nyc-permits-311-service-efficiency-analysis)
 
 ---
 
