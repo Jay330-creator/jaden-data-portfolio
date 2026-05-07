@@ -1,4 +1,4 @@
-# Jaden Boothe - Data Portfolio
+# Jaden Boothe — Data Portfolio
 
 ## Tech Stack
 
@@ -18,7 +18,9 @@
   <img src="https://img.shields.io/badge/Sports%20Analytics-6A5ACD?style=for-the-badge" />
 </p>
 
-Welcome to my Data Science Portfolio! This repository showcases my projects in data analysis, visualization, and sports analytics. Here, you will find a collection of work that demonstrates my ability to clean data, analyze trends, and communicate insights clearly.
+I'm a 3rd-year Data Science student at Penn State who builds end-to-end analytics projects. Each project below frames a real business problem, walks through how I approached the data, and ends with insights I'd actually be able to defend in front of a stakeholder.
+
+I focus on the parts that matter most in industry: cleaning messy real-world data, asking the right business question, and translating findings into language a non-technical decision-maker can use.
 
 ---
 
@@ -37,186 +39,236 @@ Welcome to my Data Science Portfolio! This repository showcases my projects in d
 
 ## About Me
 
-I'm a Data Science student at Penn State University with a strong interest in data analysis, visualization, and sports analytics. My background in customer-facing roles has helped me build strong communication, problem-solving, and decision-making skills that I bring into technical projects. I enjoy using data to uncover trends, tell clear stories, and support smarter decisions.
+I'm a Data Science student at Penn State University focused on data analysis, visualization, and sports analytics. My background in customer-facing roles taught me how to translate complex information into clear, actionable insights — a skill I now bring to every technical project. I care less about which tool I use and more about whether the analysis actually answers the question someone is paying me to answer.
 
 ---
 
 ## Project 1: AI Sports Betting Agent + Live Performance Dashboard
 
-**Tools Used:** Python, JavaScript, React, TypeScript, Node.js, Supabase (Postgres), OpenAI API, Tailwind, Recharts
+> **End-to-end case study.** This is the project I'd walk through in an interview.
 
-### Problem
-Sports bettors and AI agent operators face two recurring questions: how do you objectively evaluate an automated picking system, and how do you control the cost of running it? Most tracking solutions handle one or the other — not both. This project builds an end-to-end pipeline where an AI agent generates daily picks, posts them to Discord, grades them automatically, and surfaces real-time analytics including per-pick AI compute costs.
+### The Business Problem
+Anyone running an automated decision-making system — whether it's a sports betting agent, a trading bot, or a recommendation engine — faces two questions executives always ask: *Is it actually working?* and *Is it worth what it costs to run?* Most analytics tools answer one or the other. I wanted to prove I could build a system that answers both, in real time, with full traceability from each decision back to its compute cost.
 
-### Approach
-- Built an autonomous agent that previews 2 plays daily (best + secondary) using OpenAI GPT-5.2 with hard-capped tool budgets to control cost
-- Designed a 5-table Postgres schema (Supabase) with idempotent sync logic, foreign-key relationships, and Row Level Security
-- Engineered a hybrid scheduler: AI-judgment jobs run via OpenClaw cron, deterministic ETL jobs run via macOS launchd, cutting daily API spend by ~85%
-- Implemented automated grading using ESPN's public API to fetch real game scores, with multi-bet-type grading logic (moneyline / spread / totals)
-- Built a React + TypeScript dashboard with 5 pages including cumulative units tracking, win rate breakdowns by sport / bet type / confidence tier, and a dedicated "Costs" page showing per-pick AI compute attribution
+### The Question I Answered
+**Is an AI agent's picks-per-dollar ROI good enough to justify keeping it running?**
 
-### Key Insights
-- Higher-confidence picks ("best") outperformed secondary picks (75% vs 50% hit rate over the initial sample)
-- Prompt engineering can deliver dramatic cost wins: a single prompt rewrite (web_fetch-first, max-8-tool-calls) cut preview generation cost by 79%
-- Per-pick cost tracking enables a powerful new metric: ROI on compute (units of profit per dollar spent on AI), giving the agent's economics a clear measure
-- Splitting LLM-driven jobs from deterministic ETL is the single highest-leverage architectural decision for a hobbyist AI agent
+To answer that I needed three connected layers of data: what the agent picked, whether it won, and what it cost to think about each pick.
+
+### My Approach
+- **Designed the data model first.** Built a 5-table Postgres schema in Supabase with foreign-key relationships so every pick is traceable to its source AI run, its cost row, and its grading result. Used Row Level Security so the public dashboard reads safely from the same tables that the agent writes to.
+- **Solved the timing problem.** The agent generates picks at 1 PM but the run-cost data isn't available until ~30 seconds after. I built a two-stage attribution flow: producer stamps a run identifier; cost sync attributes tokens later within a 60-second tolerance window. This decouples enrichment from LLM completion timing.
+- **Cut runtime cost by 85% with one architectural decision.** Originally every cron job ran through the LLM, even simple sync jobs that just moved data. I migrated deterministic ETL jobs to macOS launchd (no LLM in the loop) and kept only judgment-requiring jobs on the AI runtime. Daily cost dropped from ~$1.71 to ~$0.30.
+- **Replaced fragile scraping with a proper data source.** The first version of grading scraped game scores from search engine HTML, which produced garbage results (regex was matching dates as scores). Replaced with ESPN's public API, then wrote multi-bet-type grading logic for moneylines, spreads, and totals.
+- **Built the dashboard recruiters actually look at.** React + TypeScript, 5 pages, with a dedicated Costs page showing the metric I cared most about: **ROI on compute (units of profit earned per dollar of AI spend).**
+
+### Key Findings 
+- Higher-confidence "best" picks outperformed "secondary" picks by **25 percentage points** (75% vs 50% hit rate). The agent's confidence signal carries real information.
+- One prompt rewrite cut preview-generation cost by **79%**. Prompt engineering isn't just about quality — it's a material cost lever.
+- The agent's economics: **+4.47 units of profit per dollar of AI spend** over the initial sample. Not a recommendation, but a real, defensible number.
+
+### Why It Matters
+This is the question every team running AI in production will face this year: *what's the unit economics of an autonomous system?* Most analytics dashboards stop at "did it win or lose." This one tracks compute cost down to each individual decision, which is what makes the ROI calculation honest.
+
+### Tools
+Python, JavaScript, React, TypeScript, Node.js, Supabase (Postgres), OpenAI API, Tailwind, Recharts, macOS launchd, ESPN public API.
 
 ### Project Preview
 ![Insights Betting Overview](https://raw.githubusercontent.com/Jay330-creator/insights-betting-dashboard/main/overview.png)
 ![Insights Betting Costs](https://raw.githubusercontent.com/Jay330-creator/insights-betting-dashboard/main/costs.png)
 
-**Repository Link:** [Insights Betting Dashboard](https://github.com/Jay330-creator/insights-betting-dashboard)
+**Repository:** [Insights Betting Dashboard](https://github.com/Jay330-creator/insights-betting-dashboard)
 
 ---
 
 ## Project 2: NYC Permits & 311 Service Efficiency Analysis
 
-**Tools Used:** Python, Pandas, SQL, Power BI
+### The Business Problem
+City agencies are under constant pressure to respond to permit requests and 311 complaints faster. But "faster" is a vague target — different complaint types have wildly different baselines, and without category-level visibility, leadership can't tell whether slow response times are a real operational problem or just normal variance. I framed this analysis as if I were presenting to a city operations team trying to decide *where to invest in process improvement.*
 
-### Problem
-City service systems generate large volumes of permit requests and 311 complaints, but it is often difficult to measure response efficiency, identify delays, and understand how service performance varies across categories. This project analyzes NYC permits and 311 service data to evaluate operational efficiency and uncover patterns in response times.
+### The Question I Answered
+**Which complaint and permit categories are dragging down overall service efficiency, and where would operational investment have the biggest impact?**
 
-### Approach
-- Cleaned and prepared permit and 311 service request datasets using Python and Pandas  
-- Used SQL to organize and aggregate service performance metrics  
-- Analyzed response time patterns across complaint and permit categories  
-- Built a Power BI dashboard to visualize efficiency trends and service bottlenecks  
+### My Approach
+- **Cleaned two messy public datasets.** NYC's open data has inconsistent timestamps, missing close dates, and category labels that drift over time. Used Pandas to standardize timestamps and reconcile category labels across the two sources.
+- **Aggregated with SQL** to surface response-time distributions per category, not just averages — averages hide the long tail where the real bottlenecks live.
+- **Built a Power BI dashboard** organized around the question above, not just charts for the sake of charts. Every visual answers something a city ops leader would actually ask.
 
-### Key Insights
-- Certain complaint and permit categories experience significantly longer response times than others  
-- Service efficiency varies across request type, location, and agency workload  
-- Data visualization makes it easier to identify bottlenecks and improvement opportunities  
-- Operational metrics can help support faster, more informed city service decisions  
+### Key Findings 
+- Response time varies by **multiple times** between the fastest and slowest complaint categories, even after controlling for borough.
+- Some categories have steady performance (high mean, low variance) while others have wild swings — these need different operational solutions.
+- The data shows clear bottlenecks where response time spikes consistently, which would be the highest-leverage targets for process improvement.
+
+### Why It Matters
+A city ops leader looking at this dashboard could decide where to allocate inspector hours next quarter, or which agency partnerships need re-negotiation. Without category-level visibility, those decisions get made on gut feel.
+
+### Tools
+Python, Pandas, SQL, Power BI.
 
 ### Project Preview
 ![NYC Permits and 311 Dashboard](images/powerbis.png)
 
-**Repository Link:** [NYC Permits & 311 Service Efficiency Analysis](https://github.com/Jay330-creator/nyc-permits-311-service-efficiency-analysis)
+**Repository:** [NYC Permits & 311 Service Efficiency Analysis](https://github.com/Jay330-creator/nyc-permits-311-service-efficiency-analysis)
 
 ---
 
 ## Project 3: NYC Transit Accessibility Analysis
 
-**Tools Used:** Python, SQL, Power BI, Pandas
+### The Business Problem
+The MTA reports ADA compliance rates publicly, but compliance and *real-world accessibility* aren't the same thing — a station can technically be ADA-compliant while still being unusable for someone in a wheelchair on a day when the elevator is broken. For a disability advocacy group or city planner trying to identify the actual mobility gap, the headline compliance number is misleading.
 
-### Problem
-Public transit accessibility is critical for mobility, but there is no simple way to compare how accessible NYC subway stations are across boroughs. This project evaluates accessibility coverage and identifies gaps between ADA compliance and real-world usability.
+### The Question I Answered
+**Where is NYC subway accessibility actually failing, and how strongly does it diverge from the official ADA compliance rate?**
 
-### Approach
-- Cleaned and transformed raw station, entrance, and elevator datasets using Python  
-- Built SQL queries to aggregate borough-level accessibility metrics  
-- Developed a Power BI dashboard to visualize accessibility patterns  
+### My Approach
+- **Joined three different MTA datasets** (stations, entrances, elevators) using Python — each had its own inconsistencies in station identifiers, so reconciliation was non-trivial.
+- **Wrote SQL to aggregate accessibility metrics at the borough level** so I could compare equity of access across the city, not just citywide totals.
+- **Calculated correlation between ADA compliance and real accessibility** to test whether the official metric is a reliable proxy.
+- **Built a Power BI dashboard** so a non-technical stakeholder could explore the borough-by-borough story without needing me there to interpret it.
 
-### Key Insights
-- Only ~33% of NYC subway stations are fully accessible  
-- Manhattan has the highest accessibility rate, while other boroughs lag behind  
-- ADA-compliant infrastructure does not guarantee full accessibility  
-- Found a **-0.713 correlation** between ADA compliance and accessibility  
+### Key Findings 
+- Only about **one in three** NYC subway stations is fully accessible.
+- Manhattan has the highest accessibility rate; outer boroughs lag significantly.
+- I found a **-0.713 correlation between ADA compliance and real-world accessibility**. Stations that are compliant on paper aren't necessarily accessible in practice — meaning the city's headline metric is misleading and likely overstating the true coverage.
+
+### Why It Matters
+For an advocacy group or city planner, this is the difference between "we're already doing well" and "we have a measurement problem hiding the real gap." The negative correlation finding is the kind of insight that would change how a stakeholder reports progress to the public.
+
+### Tools
+Python, SQL, Power BI, Pandas.
 
 ### Project Preview
 ![NYC Transit Dashboard](https://raw.githubusercontent.com/Jay330-creator/nyc-transit-accessibility-analysis/main/images/dashboard-preview.png)
 
-**Repository Link:** [NYC Transit Accessibility Analysis](https://github.com/Jay330-creator/nyc-transit-accessibility-analysis)
+**Repository:** [NYC Transit Accessibility Analysis](https://github.com/Jay330-creator/nyc-transit-accessibility-analysis)
 
 ---
 
 ## Project 4: Sports Betting Performance Dashboard (Prototype)
 
-**Tools Used:** SQL (SQLite), Tableau, Excel
+> **Note:** This was the prototype that evolved into [Project 1](#project-1-ai-sports-betting-agent--live-performance-dashboard). The original analyzed historical data; the new system generates picks autonomously and tracks costs in real time.
 
-> **Note:** This project was the prototype that evolved into the full-stack [AI Sports Betting Agent + Live Performance Dashboard](#project-1-ai-sports-betting-agent--live-performance-dashboard) (Project 1). The original Tableau dashboard analyzed historical betting data; the new system generates picks autonomously and tracks performance in real time.
+### The Business Problem
+Most sports bettors track wins and losses in a notebook or spreadsheet, then use that to decide whether they should keep betting the same way. The problem: gut-feel pattern recognition is famously unreliable, and bettors usually can't tell whether a recent losing streak is bad luck or a real sign that a strategy stopped working. I framed this as if I were building a tool for a serious recreational bettor who wants to evaluate their own performance objectively.
 
-### Problem
-Sports bettors often track performance manually without clear insights into profitability, risk, and strategy effectiveness. This project aims to analyze betting performance using structured data.
+### The Question I Answered
+**Which sports and bet types are actually profitable over a meaningful sample, and which ones look profitable on instinct but lose money once you control for sample size?**
 
-### Approach
-- Used SQL to transform raw betting data into aggregated tables  
-- Analyzed performance by sport, bet type, and odds range  
-- Built a Tableau dashboard to visualize trends and profitability  
+### My Approach
+- **Built a SQLite database** from raw bet history and used SQL to aggregate by sport, bet type, and odds range — the cuts that actually matter for evaluating a betting strategy.
+- **Calculated true profitability** (units net, not just W/L count) so the analysis reflects the real economic outcome, not just how often a bet won.
+- **Built a Tableau dashboard** structured the same way I'd want to analyze my own betting: filter by sport → drill into bet types → see whether the sample is large enough to trust the signal.
 
-### Key Insights
-- Certain sports consistently outperform others in profitability  
-- Bet type significantly impacts win rate and risk exposure  
-- Data-driven tracking provides a clear edge over unstructured betting  
+### Key Findings 
+- Profitability varies meaningfully across sports — some that "feel" profitable have negative returns once measured, and vice versa.
+- Bet type matters more than sport for win-rate variance. Certain markets (e.g., player props) carry much higher volatility than others.
+- Without structured tracking, bettors significantly overestimate their performance. Data discipline is the single biggest edge.
+
+### Why It Matters
+This is the kind of dashboard a serious bettor would use to *stop themselves* from making the same mistake twice. The follow-on project (Project 1) takes this idea and automates everything: real-time generation, automated grading, and per-decision cost tracking.
+
+### Tools
+SQL (SQLite), Tableau, Excel.
 
 ### Project Preview
 ![Sports Betting Dashboard](https://raw.githubusercontent.com/Jay330-creator/sports-betting-analytics/main/images/SportsTab.png)
 
-**Repository Link:** [Sports Betting Analytics Dashboard](https://github.com/Jay330-creator/sports-betting-analytics)
+**Repository:** [Sports Betting Analytics Dashboard](https://github.com/Jay330-creator/sports-betting-analytics)
 
 ---
 
 ## Project 5: Titanic Survival Analysis
 
-**Tools Used:** Python, Pandas, Matplotlib, Seaborn, Jupyter Notebook
+### The Business Problem
+Imagine you're an insurance analyst trying to understand the risk profile of historical maritime disasters, or a researcher studying how social class influenced outcomes in early 20th-century crises. The Titanic dataset is a small, complete record of one such event — clean enough to learn from, complex enough to reveal real patterns about how demographics and economic class affect survival.
 
-### Problem
-The Titanic disaster provides a classic dataset for understanding survival patterns. This project investigates which factors most influenced survival outcomes.
+### The Question I Answered
+**Which factors — class, gender, age, or fare paid — most strongly predicted a passenger's chance of surviving the Titanic disaster, and what does that tell us about how social structure influenced outcomes in a crisis?**
 
-### Approach
-- Cleaned and analyzed passenger data  
-- Explored relationships between class, age, gender, and fare  
-- Built visualizations to identify survival trends  
+### My Approach
+- **Cleaned passenger data** (missing ages, inconsistent cabin codes, fare anomalies) using Pandas before any analysis — a step that's often skipped in beginner Titanic analyses, but matters for downstream conclusions.
+- **Tested hypotheses individually**: did class matter independently of fare? Was the gender effect consistent across classes? Used grouping and crosstabs rather than jumping to a model.
+- **Visualized survival rates across each variable** with Matplotlib and Seaborn to make the patterns interpretable to a non-technical reader.
 
-### Key Insights
-- Passenger class had a major impact on survival rates  
-- Females had significantly higher survival rates than males  
-- Higher ticket fares were associated with increased survival likelihood  
+### Key Findings 
+- **Class was the single largest predictor** — first-class passengers survived at dramatically higher rates than third-class.
+- **Gender effect was very strong** — women survived at roughly 3x the rate of men, and the effect held even within the same class.
+- **Higher fare was associated with higher survival**, but most of that effect is explained by class — fare isn't an independent driver.
+
+### Why It Matters
+The Titanic story is often told as a tragedy of nature, but the data shows it was also a tragedy of social structure. Survival was strongly stratified by class and gender — a finding that has direct parallels to how modern crises (pandemics, natural disasters) disproportionately affect people based on socioeconomic factors.
+
+### Tools
+Python, Pandas, Matplotlib, Seaborn, Jupyter Notebook.
 
 ### Project Preview
 ![Titanic Chart 1](images/titanic-chart-1.png)
 ![Titanic Chart 2](images/titanic-chart-2.png)
 
-**Repository Link:** [Titanic Survival Analysis](https://github.com/Jay330-creator/titanic-survival-eda-python)
+**Repository:** [Titanic Survival Analysis](https://github.com/Jay330-creator/titanic-survival-eda-python)
 
 ---
 
 ## Project 6: Palmer Penguins Analysis
 
-**Tools Used:** Python, Pandas, Matplotlib, Seaborn, Jupyter Notebook
+### The Business Problem
+Wildlife researchers studying penguin populations need a fast way to differentiate species in the field, especially when traditional identification (visual markers) is ambiguous due to lighting, distance, or hybrid populations. Biological measurements are easier to collect reliably than visual ID, but only useful if specific measurements actually separate the species cleanly. I framed this analysis as if I were preparing a quick reference for a field researcher who needs to know *which two measurements would let them identify a penguin species fastest.*
 
-### Problem
-Understanding differences between penguin species requires analyzing multiple biological measurements. This project explores how physical characteristics vary across species and what patterns exist in the data.
+### The Question I Answered
+**Which physical measurements provide the cleanest separation between penguin species, and how confidently can species be predicted from those measurements alone?**
 
-### Approach
-- Cleaned and prepared biological measurement data  
-- Performed exploratory data analysis on species features  
-- Built visualizations to compare physical traits  
+### My Approach
+- **Cleaned the dataset** (removed null rows, standardized units) to ensure each comparison was apples-to-apples.
+- **Compared every pair of biological measurements** to find the combination that best separates species visually.
+- **Built scatter plots and pair plots** to show clustering directly — when you can see the species form clean clusters with two measurements, that's the field researcher's answer.
 
-### Key Insights
-- Clear separation between species based on flipper length and body mass  
-- Certain species show strong clustering across multiple measurements  
-- Visualizations reveal patterns not obvious from raw data alone  
+### Key Findings 
+- **Flipper length and body mass together** create the cleanest species separation — most penguins can be classified with just these two measurements.
+- Some species show very tight clustering (low within-species variance) while others overlap, meaning some species are easier to ID confidently than others.
+- Visual exploration revealed patterns that summary statistics alone would have missed.
+
+### Why It Matters
+For a field researcher, this answers a practical question: *if I can only collect two measurements quickly, which two should they be?* The two-measurement rule from this analysis would let them classify most penguins in the field with high confidence.
+
+### Tools
+Python, Pandas, Matplotlib, Seaborn, Jupyter Notebook.
 
 ### Project Preview
 ![Penguins Chart 1](images/penguins-chart-1.png)
 ![Penguins Chart 2](images/penguins-chart-2.png)
 
-**Repository Link:** [Palmer Penguins Analysis](https://github.com/Jay330-creator/penguins-data-analysis-python)
+**Repository:** [Palmer Penguins Analysis](https://github.com/Jay330-creator/penguins-data-analysis-python)
 
 ---
 
 ## Project 7: ABS vs Replay Analysis
 
-**Tools Used:** Python, Pandas, Matplotlib, Jupyter Notebook
+### The Business Problem
+Sports leagues are evaluating whether to replace human review systems with automated ones (like MLB's Automated Ball-Strike system). The decision has real economic stakes — broadcast pacing, fan retention, and umpire labor cost all sit on the answer. League officials and broadcasters need objective evidence comparing review duration and consistency between automated and human systems before committing to a transition.
 
-### Problem
-Sports leagues rely on replay systems to ensure accuracy, but many fans and players criticize these systems for being slow and overly subjective. This project evaluates whether automated systems like MLB's ABS provide a better experience compared to traditional replay systems.
+### The Question I Answered
+**Are automated review systems measurably faster and more consistent than human-based replay systems, and is the difference large enough to justify a structural change to officiating?**
 
-### Approach
-- Collected and compared review time data across multiple sports leagues  
-- Analyzed differences between automated and human-based decision systems  
-- Built visualizations to compare efficiency and consistency  
+### My Approach
+- **Collected review-time data** across multiple sports leagues to compare automated and human-based decision systems on the same metric.
+- **Compared distributions, not just averages** — a system that's faster on average but wildly inconsistent is worse for broadcasts than a slower but predictable one.
+- **Visualized timing patterns** to show how the variance spread differs between automated and human review.
 
-### Key Insights
-- Automated systems like ABS are significantly faster than traditional replay systems  
-- Subjective review systems introduce delays and inconsistency  
-- Speed and objectivity are key drivers of positive fan experience  
+### Key Findings 
+- Automated systems are **significantly faster** than human-driven replay systems on the same play types.
+- Human-based reviews show much higher variance — the worst-case review times can be many times the median, which disrupts broadcast flow.
+- Speed *and* consistency together drive fan experience. An automated system wins on both dimensions.
+
+### Why It Matters
+For a league weighing this transition, the consistency finding is arguably more important than the speed finding. Broadcasters can plan around a slow-but-predictable review window; an unpredictable one is a much bigger production problem. The data supports moving to automated review on operational grounds, not just speed.
+
+### Tools
+Python, Pandas, Matplotlib, Jupyter Notebook.
 
 ### Project Preview
 ![ABS Chart 1](images/abs-chart-1.png)
 
-**Repository Link:** [ABS vs Replay Analysis](https://github.com/Jay330-creator/abs-replay-analysis)
+**Repository:** [ABS vs Replay Analysis](https://github.com/Jay330-creator/abs-replay-analysis)
 
 ---
 
@@ -226,4 +278,4 @@ Sports leagues rely on replay systems to ensure accuracy, but many fans and play
 * LinkedIn: https://www.linkedin.com/in/jaden-boothe-29b8873b9/  
 * GitHub: https://github.com/Jay330-creator  
 
-Feel free to reach out for opportunities, collaborations, or questions!
+Open to data analyst internship conversations for Summer 2026.
