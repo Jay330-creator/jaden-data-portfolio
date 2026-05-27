@@ -28,12 +28,13 @@ I focus on the parts that matter most in industry: cleaning messy real-world dat
 
 * [About Me](#about-me)
 * [Project 1: AI Sports Betting Agent + Live Performance Dashboard](#project-1-ai-sports-betting-agent--live-performance-dashboard)
-* [Project 2: NYC Permits & 311 Service Efficiency Analysis](#project-2-nyc-permits--311-service-efficiency-analysis)
-* [Project 3: NYC Transit Accessibility Analysis](#project-3-nyc-transit-accessibility-analysis)
-* [Project 4: Sports Betting Performance Dashboard (Prototype)](#project-4-sports-betting-performance-dashboard-prototype)
-* [Project 5: Titanic Survival Analysis](#project-5-titanic-survival-analysis)
-* [Project 6: Palmer Penguins Analysis](#project-6-palmer-penguins-analysis)
-* [Project 7: ABS vs Replay Analysis](#project-7-abs-vs-replay-analysis)
+* [Project 2: What Makes a Hit Song? — Spotify Analytics](#project-2-what-makes-a-hit-song--spotify-analytics)
+* [Project 3: NYC Permits & 311 Service Efficiency Analysis](#project-3-nyc-permits--311-service-efficiency-analysis)
+* [Project 4: NYC Transit Accessibility Analysis](#project-4-nyc-transit-accessibility-analysis)
+* [Project 5: Sports Betting Performance Dashboard (Prototype)](#project-5-sports-betting-performance-dashboard-prototype)
+* [Project 6: Titanic Survival Analysis](#project-6-titanic-survival-analysis)
+* [Project 7: Palmer Penguins Analysis](#project-7-palmer-penguins-analysis)
+* [Project 8: ABS vs Replay Analysis](#project-8-abs-vs-replay-analysis)
 
 ---
 
@@ -81,7 +82,41 @@ Python, JavaScript, React, TypeScript, Node.js, Supabase (Postgres), OpenAI API,
 
 ---
 
-## Project 2: NYC Permits & 311 Service Efficiency Analysis
+## Project 2: What Makes a Hit Song? — Spotify Analytics
+
+### The Business Problem
+Music labels and streaming services make seven-figure bets on which songs to promote, which artists to sign, and which audio profiles to chase. But what actually separates a hit song from the 95% of tracks nobody streams? The industry runs on instinct — "this song feels like a hit" — and instinct is famously unreliable. I framed this analysis as if I were working for an A&R team or streaming platform trying to identify which audio characteristics, lengths, and genre patterns reliably predict commercial success.
+
+### The Question I Answered
+**What audio features, song lengths, and genre patterns separate a hit song (popularity ≥ 70) from the rest, and which industry assumptions about hit-making actually hold up to the data?**
+
+### My Approach
+- **Loaded 114,000 tracks into BigQuery** and wrote 5 SQL queries to surface the patterns that matter — audio feature comparisons, song-length sweet spots, genre-level hit rates, the effect of explicit content per genre, and the audio "recipe" of the top 5% of all tracks.
+- **Pushed past surface-level findings** to test counterintuitive hypotheses. The explicit-content-by-genre query was the breakthrough — it revealed that the "industry truth" of explicit content helping hits is genre-dependent, and breaks down completely in country music.
+- **Validated sample sizes honestly.** The dataset is balanced at 1,000 songs per genre, which made cross-genre comparisons fair. I flagged subgroups (like explicit country, n=30) where the directional finding is robust but exact percentages have wider error bars.
+- **Built a 4-page Power BI dashboard** structured as a narrative: Executive Overview → Hit Anatomy (what features) → Genre Battle (which genres) → The Hit Recipe (the formula). Each page answers a specific question, not just "show charts."
+
+### Key Findings 
+- **Only 4.8% of tracks are hits.** Out of 114,000 songs, just 5,472 cross the popularity threshold — a baseline that frames how rare success actually is.
+- **Acousticness is the biggest signal — hits are 31% less acoustic than non-hits.** The single largest feature gap. Production matters more than tempo (hits and non-hits average 120 vs 122 BPM — nearly identical).
+- **The country reversal — the headline finding.** Adding explicit content nearly doubles hit rate in pop (29% → 59%) and gives R&B a 9x boost. But country is the only genre where explicit content REDUCES hit rate (8.9% → 3.3%). Genre context matters more than the content itself — a finding that contradicts the industry assumption that explicit lyrics always help.
+- **The hit recipe (from the top 5% of all tracks):** 120 BPM, 3:38 long, danceability 0.61, energy 0.67, low acousticness (0.22), mastered loud at -6.7 dB. Only 15.7% are explicit — meaning explicit content isn't a hit-maker on its own, just a multiplier in specific genres.
+
+### Why It Matters
+For an A&R team deciding which tracks to promote, "songs that look like hits" is a measurable concept — not a vibe. The country-explicit reversal is the kind of finding that would change a marketing strategy. The fact that acousticness matters more than tempo would change which songs get pitched to producers. These insights are actionable in ways that genre-level instincts aren't.
+
+### Tools
+SQL (Google BigQuery), Power BI, Python (preprocessing). Dataset: Kaggle Spotify Tracks Dataset (114,000 tracks).
+
+### Project Preview
+![Spotify Executive Overview](https://raw.githubusercontent.com/Jay330-creator/spotify-hit-analysis/main/images/01_overview.png)
+![Spotify The Recipe](https://raw.githubusercontent.com/Jay330-creator/spotify-hit-analysis/main/images/04_recipe.png)
+
+**Repository:** [Spotify Hit Analysis](https://github.com/Jay330-creator/spotify-hit-analysis)
+
+---
+
+## Project 3: NYC Permits & 311 Service Efficiency Analysis
 
 ### The Business Problem
 City agencies are under constant pressure to respond to permit requests and 311 complaints faster. But "faster" is a vague target — different complaint types have wildly different baselines, and without category-level visibility, leadership can't tell whether slow response times are a real operational problem or just normal variance. I framed this analysis as if I were presenting to a city operations team trying to decide *where to invest in process improvement.*
@@ -112,7 +147,7 @@ Python, Pandas, SQL, Power BI.
 
 ---
 
-## Project 3: NYC Transit Accessibility Analysis
+## Project 4: NYC Transit Accessibility Analysis
 
 ### The Business Problem
 The MTA reports ADA compliance rates publicly, but compliance and *real-world accessibility* aren't the same thing — a station can technically be ADA-compliant while still being unusable for someone in a wheelchair on a day when the elevator is broken. For a disability advocacy group or city planner trying to identify the actual mobility gap, the headline compliance number is misleading.
@@ -144,7 +179,7 @@ Python, SQL, Power BI, Pandas.
 
 ---
 
-## Project 4: Sports Betting Performance Dashboard (Prototype)
+## Project 5: Sports Betting Performance Dashboard (Prototype)
 
 > **Note:** This was the prototype that evolved into [Project 1](#project-1-ai-sports-betting-agent--live-performance-dashboard). The original analyzed historical data; the new system generates picks autonomously and tracks costs in real time.
 
@@ -177,7 +212,7 @@ SQL (SQLite), Tableau, Excel.
 
 ---
 
-## Project 5: Titanic Survival Analysis
+## Project 6: Titanic Survival Analysis
 
 ### The Business Problem
 Imagine you're an insurance analyst trying to understand the risk profile of historical maritime disasters, or a researcher studying how social class influenced outcomes in early 20th-century crises. The Titanic dataset is a small, complete record of one such event — clean enough to learn from, complex enough to reveal real patterns about how demographics and economic class affect survival.
@@ -209,7 +244,7 @@ Python, Pandas, Matplotlib, Seaborn, Jupyter Notebook.
 
 ---
 
-## Project 6: Palmer Penguins Analysis
+## Project 7: Palmer Penguins Analysis
 
 ### The Business Problem
 Wildlife researchers studying penguin populations need a fast way to differentiate species in the field, especially when traditional identification (visual markers) is ambiguous due to lighting, distance, or hybrid populations. Biological measurements are easier to collect reliably than visual ID, but only useful if specific measurements actually separate the species cleanly. I framed this analysis as if I were preparing a quick reference for a field researcher who needs to know *which two measurements would let them identify a penguin species fastest.*
@@ -241,7 +276,7 @@ Python, Pandas, Matplotlib, Seaborn, Jupyter Notebook.
 
 ---
 
-## Project 7: ABS vs Replay Analysis
+## Project 8: ABS vs Replay Analysis
 
 ### The Business Problem
 Sports leagues are evaluating whether to replace human review systems with automated ones (like MLB's Automated Ball-Strike system). The decision has real economic stakes — broadcast pacing, fan retention, and umpire labor cost all sit on the answer. League officials and broadcasters need objective evidence comparing review duration and consistency between automated and human systems before committing to a transition.
