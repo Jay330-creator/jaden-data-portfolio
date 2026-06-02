@@ -144,8 +144,8 @@ A lot of public NBA prediction projects quote inflated accuracy numbers because 
 Python, Pandas, scikit-learn, NumPy, Matplotlib, Jupyter Notebook.
 
 ### Project Preview
-![Accuracy vs Baseline](https://raw.githubusercontent.com/Jay330-creator/nba-prediction-model/main/images/accuracy_comparison.png)
-![Feature Importance](https://raw.githubusercontent.com/Jay330-creator/nba-prediction-model/main/images/feature_importance.png)
+![Accuracy vs Baseline](https://raw.githubusercontent.com/Jay330-creator/nba-machine-learning-predictions/main/images/accuracy_comparison.png)
+![Feature Importance](https://raw.githubusercontent.com/Jay330-creator/nba-machine-learning-predictions/main/images/feature_importance.png)
 
 **Repository:** [NBA Prediction Model](https://github.com/Jay330-creator/nba-machine-learning-predictions
 
