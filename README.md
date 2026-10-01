@@ -29,14 +29,15 @@ The parts I care most about are the unglamorous ones: cleaning data that doesn't
 
 * [About Me](#about-me)
 * [Project 1: AI Sports Betting Agent + Live Performance Dashboard](#project-1-ai-sports-betting-agent--live-performance-dashboard)
-* [Project 2: What Makes a Hit Song? Spotify Analytics](#project-2-what-makes-a-hit-song-spotify-analytics)
-* [Project 3: NBA Game Outcome Prediction, A Machine Learning Project](#project-3-nba-game-outcome-prediction-a-machine-learning-project)
-* [Project 4: NYC Permits & 311 Service Efficiency Analysis](#project-4-nyc-permits--311-service-efficiency-analysis)
-* [Project 5: NYC Transit Accessibility Analysis](#project-5-nyc-transit-accessibility-analysis)
-* [Project 6: Sports Betting Performance Dashboard (Prototype)](#project-6-sports-betting-performance-dashboard-prototype)
-* [Project 7: Titanic Survival Analysis](#project-7-titanic-survival-analysis)
-* [Project 8: Palmer Penguins Analysis](#project-8-palmer-penguins-analysis)
-* [Project 9: ABS vs Replay Analysis](#project-9-abs-vs-replay-analysis)
+* [Project 2: Retail Demand & Inventory Analytics](#project-2-retail-demand--inventory-analytics)
+* [Project 3: What Makes a Hit Song? Spotify Analytics](#project-3-what-makes-a-hit-song-spotify-analytics)
+* [Project 4: NBA Game Outcome Prediction, A Machine Learning Project](#project-4-nba-game-outcome-prediction-a-machine-learning-project)
+* [Project 5: NYC Permits & 311 Service Efficiency Analysis](#project-5-nyc-permits--311-service-efficiency-analysis)
+* [Project 6: NYC Transit Accessibility Analysis](#project-6-nyc-transit-accessibility-analysis)
+* [Project 7: Sports Betting Performance Dashboard (Prototype)](#project-7-sports-betting-performance-dashboard-prototype)
+* [Project 8: Titanic Survival Analysis](#project-8-titanic-survival-analysis)
+* [Project 9: Palmer Penguins Analysis](#project-9-palmer-penguins-analysis)
+* [Project 10: ABS vs Replay Analysis](#project-10-abs-vs-replay-analysis)
 
 ---
 
@@ -94,7 +95,53 @@ Python, JavaScript, React, TypeScript, Node.js, Supabase (Postgres), OpenAI API,
 
 ---
 
-## Project 2: What Makes a Hit Song? Spotify Analytics
+## Project 2: Retail Demand & Inventory Analytics
+
+> **Merchandising & demand planning case study.** Built to practice the work a retail planning team does going into the holidays.
+
+### The Business Problem
+
+Going into the holiday season, a consumer-electronics retailer's merchandising and planning team has to make expensive calls: which products to buy deeper on, which ones to cut, where promotions are worth the margin, and how much demand to plan for. Getting it wrong shows up fast, either as empty shelves on Black Friday or as overstock that ends up marked down in January.
+
+### The Question I Answered
+
+**What's actually driving sales, where is inventory too high or too low, do promotions really work, and what will Q4 demand look like?**
+
+### My Approach
+
+* **Validated the data before trusting it.** Ran a standard quality scan on ~30,000 weekly product × region rows and fixed six issues: duplicate rows, missing brands, missing inventory (rebuilt with last week + received − sold), sign errors in units (confirmed against revenue), prices with an extra zero, and inconsistent category labels. After cleaning, units × price matched revenue on 100% of rows.
+* **Broke the totals down until they made sense.** Revenue grew 7% but units only 3.5%, so I drilled from company to category to individual product to find out why.
+* **Measured inventory against risk.** Calculated weeks of supply and weeks of cover (including stock on order) for every product, then sanity-checked the flags instead of trusting the rule blindly.
+* **Corrected for a confounding factor in promotions.** The biggest promos run on Black Friday, when demand is already high, so I compared promo lift with and without the holiday months.
+* **Backtested two forecasting methods** on the 2025 holiday quarter using WAPE, then forecast Q4 2026.
+
+### Key Findings
+
+* **Customers are trading up in TVs.** TV units fell 10% while TV revenue rose 8%. Premium TVs ($1,000+) grew 14% in units while budget TVs fell 25%, so a plan built on category totals would under-buy exactly the models customers want.
+* **Four products are badly overstocked** at 25 to 54 weeks of supply, while fast-growing holiday items like the 85" TV and SleepBuds were running thin heading into their peak.
+* **The rule flagged three laptops as low, but they were false alarms.** Back-to-school had inflated their recent sales. Planning against the forecast instead of past sales fixes both mistakes.
+* **Gaming looked like the most promo-responsive category (+96%) but was actually the least (+30%)** once Black Friday was taken out of the comparison.
+* **A trend-adjusted forecast cut error from 10% to 8.5%** and nearly halved TV error, but hurt Smartphones because the September launch spike distorted the trend. The right method depends on the category.
+
+### Why It Matters
+
+This is the core loop of demand planning: trust the data, find what's really moving the numbers, and turn it into buy, cut, and protect decisions. The TV mix shift and the laptop false alarms are the kind of thing that change an actual purchase order.
+
+### Tools
+
+Python, Pandas, NumPy, Matplotlib, Jupyter Notebook. Dataset simulated with AI assistance to mimic real retail patterns; all cleaning, analysis, and conclusions are my own.
+
+### Project Preview
+
+![TV Mix Shift](https://raw.githubusercontent.com/Jay330-creator/retail-demand-inventory-analytics/main/images/tv_mix_shift.png)
+
+![Inventory Actions](https://raw.githubusercontent.com/Jay330-creator/retail-demand-inventory-analytics/main/images/inventory_actions.png)
+
+**Repository:** [Retail Demand & Inventory Analytics](https://github.com/Jay330-creator/retail-demand-inventory-analytics)
+
+---
+
+## Project 3: What Makes a Hit Song? Spotify Analytics
 
 ### The Business Problem
 
@@ -136,7 +183,7 @@ SQL (Google BigQuery), Power BI, Python (preprocessing). Dataset: Kaggle Spotify
 
 ---
 
-## Project 3: NBA Game Outcome Prediction, A Machine Learning Project
+## Project 4: NBA Game Outcome Prediction, A Machine Learning Project
 
 ### The Business Problem
 
@@ -178,7 +225,7 @@ Python, Pandas, scikit-learn, NumPy, Matplotlib, Jupyter Notebook.
 
 ---
 
-## Project 4: NYC Permits & 311 Service Efficiency Analysis
+## Project 5: NYC Permits & 311 Service Efficiency Analysis
 
 ### The Business Problem
 
@@ -216,7 +263,7 @@ Python, Pandas, SQL, Power BI.
 
 ---
 
-## Project 5: NYC Transit Accessibility Analysis
+## Project 6: NYC Transit Accessibility Analysis
 
 ### The Business Problem
 
@@ -255,7 +302,7 @@ Python, SQL, Power BI, Pandas.
 
 ---
 
-## Project 6: Sports Betting Performance Dashboard (Prototype)
+## Project 7: Sports Betting Performance Dashboard (Prototype)
 
 > **Note:** This is the prototype that became [Project 1](#project-1-ai-sports-betting-agent--live-performance-dashboard). This one analyzed historical bets; the newer system generates picks on its own and tracks costs in real time.
 
@@ -295,7 +342,7 @@ SQL (SQLite), Tableau, Excel.
 
 ---
 
-## Project 7: Titanic Survival Analysis
+## Project 8: Titanic Survival Analysis
 
 ### The Business Problem
 
@@ -335,7 +382,7 @@ Python, Pandas, Matplotlib, Seaborn, Jupyter Notebook.
 
 ---
 
-## Project 8: Palmer Penguins Analysis
+## Project 9: Palmer Penguins Analysis
 
 ### The Business Problem
 
@@ -375,7 +422,7 @@ Python, Pandas, Matplotlib, Seaborn, Jupyter Notebook.
 
 ---
 
-## Project 9: ABS vs Replay Analysis
+## Project 10: ABS vs Replay Analysis
 
 ### The Business Problem
 
